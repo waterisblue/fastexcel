@@ -21,19 +21,19 @@ import lombok.Setter;
 @EqualsAndHashCode
 @ContentRowHeight(100)
 public class FillAnnotationData {
-    @ExcelProperty("日期")
-    @DateTimeFormat("yyyy年MM月dd日HH时mm分ss秒")
+    @ExcelProperty("Date")
+    @DateTimeFormat("yyyy-MM-dd HH:mm:ss")
     private Date date;
 
-    @ExcelProperty(value = "数字")
+    @ExcelProperty(value = "Number")
     @NumberFormat("#.##%")
     private Double number;
 
     @ContentLoopMerge(columnExtend = 2)
-    @ExcelProperty("字符串1")
+    @ExcelProperty("String 1")
     private String string1;
-    @ExcelProperty("字符串2")
+    @ExcelProperty("String 2")
     private String string2;
-    @ExcelProperty(value = "图片", converter = StringImageConverter.class)
+    @ExcelProperty(value = "Image", converter = StringImageConverter.class)
     private String image;
 }

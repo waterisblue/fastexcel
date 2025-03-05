@@ -61,7 +61,7 @@ public class FillStyleAnnotatedTest {
 
     private void t01Fill07check(XSSFRow row) {
         XSSFCell cell0 = row.getCell(0);
-        Assertions.assertEquals("张三", cell0.getStringCellValue());
+        Assertions.assertEquals("Zhang San", cell0.getStringCellValue());
         Assertions.assertEquals(49, cell0.getCellStyle().getDataFormat());
         Assertions.assertEquals("FFFFFF00", cell0.getCellStyle().getFillForegroundColorColor().getARGBHex());
         Assertions.assertEquals("FF808000", cell0.getCellStyle().getFont().getXSSFColor().getARGBHex());
@@ -83,21 +83,21 @@ public class FillStyleAnnotatedTest {
         Assertions.assertTrue(cell2.getCellStyle().getFont().getBold());
 
         XSSFCell cell3 = row.getCell(3);
-        Assertions.assertEquals("张三今年5.2岁了", cell3.getStringCellValue());
+        Assertions.assertEquals("Zhang San is 5.2 years old this year", cell3.getStringCellValue());
         Assertions.assertEquals(0, cell3.getCellStyle().getDataFormat());
         Assertions.assertEquals("FFFF0000", cell3.getCellStyle().getFillForegroundColorColor().getARGBHex());
         Assertions.assertEquals("FFEEECE1", cell3.getCellStyle().getFont().getXSSFColor().getARGBHex());
         Assertions.assertTrue(cell3.getCellStyle().getFont().getBold());
 
         XSSFCell cell4 = row.getCell(4);
-        Assertions.assertEquals("{.name}忽略，张三", cell4.getStringCellValue());
+        Assertions.assertEquals("{.name} ignored，Zhang San", cell4.getStringCellValue());
         Assertions.assertEquals(0, cell4.getCellStyle().getDataFormat());
         Assertions.assertEquals("FFC00000", cell4.getCellStyle().getFillForegroundColorColor().getARGBHex());
         Assertions.assertEquals("FF000000", cell4.getCellStyle().getFont().getXSSFColor().getARGBHex());
         Assertions.assertFalse(cell4.getCellStyle().getFont().getBold());
 
         XSSFCell cell5 = row.getCell(5);
-        Assertions.assertEquals("空", cell5.getStringCellValue());
+        Assertions.assertEquals("Empty", cell5.getStringCellValue());
         Assertions.assertEquals(0, cell5.getCellStyle().getDataFormat());
         Assertions.assertEquals("FFF79646", cell5.getCellStyle().getFillForegroundColorColor().getARGBHex());
         Assertions.assertEquals("FF8064A2", cell5.getCellStyle().getFont().getXSSFColor().getARGBHex());
@@ -115,7 +115,7 @@ public class FillStyleAnnotatedTest {
 
     private void t02Fill03check(HSSFWorkbook workbook, HSSFRow row) {
         HSSFCell cell0 = row.getCell(0);
-        Assertions.assertEquals("张三", cell0.getStringCellValue());
+        Assertions.assertEquals("Zhang San", cell0.getStringCellValue());
         Assertions.assertEquals(49, cell0.getCellStyle().getDataFormat());
         Assertions.assertEquals("FFFF:FFFF:0", cell0.getCellStyle().getFillForegroundColorColor().getHexString());
         Assertions.assertEquals("8080:8080:0", cell0.getCellStyle().getFont(workbook).getHSSFColor(workbook)
@@ -140,7 +140,7 @@ public class FillStyleAnnotatedTest {
         Assertions.assertTrue(cell2.getCellStyle().getFont(workbook).getBold());
 
         HSSFCell cell3 = row.getCell(3);
-        Assertions.assertEquals("张三今年5.2岁了", cell3.getStringCellValue());
+        Assertions.assertEquals("Zhang San is 5.2 years old this year", cell3.getStringCellValue());
         Assertions.assertEquals(0, cell3.getCellStyle().getDataFormat());
         Assertions.assertEquals("FFFF:0:0", cell3.getCellStyle().getFillForegroundColorColor().getHexString());
         Assertions.assertEquals("FFFF:FFFF:9999", cell3.getCellStyle().getFont(workbook).getHSSFColor(workbook)
@@ -148,7 +148,7 @@ public class FillStyleAnnotatedTest {
         Assertions.assertTrue(cell3.getCellStyle().getFont(workbook).getBold());
 
         HSSFCell cell4 = row.getCell(4);
-        Assertions.assertEquals("{.name}忽略，张三", cell4.getStringCellValue());
+        Assertions.assertEquals("{.name} ignored，Zhang San", cell4.getStringCellValue());
         Assertions.assertEquals(0, cell4.getCellStyle().getDataFormat());
         Assertions.assertEquals("9999:3333:0", cell4.getCellStyle().getFillForegroundColorColor().getHexString());
         Assertions.assertEquals("3333:3333:3333", cell4.getCellStyle().getFont(workbook).getHSSFColor(workbook)
@@ -156,7 +156,7 @@ public class FillStyleAnnotatedTest {
         Assertions.assertFalse(cell4.getCellStyle().getFont(workbook).getBold());
 
         HSSFCell cell5 = row.getCell(5);
-        Assertions.assertEquals("空", cell5.getStringCellValue());
+        Assertions.assertEquals("Empty", cell5.getStringCellValue());
         Assertions.assertEquals(0, cell5.getCellStyle().getDataFormat());
         Assertions.assertEquals("9999:3333:0", cell5.getCellStyle().getFillForegroundColorColor().getHexString());
         Assertions.assertEquals("CCCC:9999:FFFF", cell5.getCellStyle().getFont(workbook).getHSSFColor(workbook)
@@ -170,7 +170,7 @@ public class FillStyleAnnotatedTest {
 
     private void t11FillStyleHandler07check(XSSFRow row) {
         XSSFCell cell0 = row.getCell(0);
-        Assertions.assertEquals("张三", cell0.getStringCellValue());
+        Assertions.assertEquals("Zhang San", cell0.getStringCellValue());
         Assertions.assertEquals(49, cell0.getCellStyle().getDataFormat());
         Assertions.assertEquals("FFFFFF00", cell0.getCellStyle().getFillForegroundColorColor().getARGBHex());
         Assertions.assertEquals("FF808000", cell0.getCellStyle().getFont().getXSSFColor().getARGBHex());
@@ -192,21 +192,21 @@ public class FillStyleAnnotatedTest {
         Assertions.assertTrue(cell2.getCellStyle().getFont().getBold());
 
         XSSFCell cell3 = row.getCell(3);
-        Assertions.assertEquals("张三今年5岁了", cell3.getStringCellValue());
+        Assertions.assertEquals("Zhang San is 5 years old this year", cell3.getStringCellValue());
         Assertions.assertEquals(0, cell3.getCellStyle().getDataFormat());
         Assertions.assertEquals("FF0000FF", cell3.getCellStyle().getFillForegroundColorColor().getARGBHex());
         Assertions.assertEquals("FF000080", cell3.getCellStyle().getFont().getXSSFColor().getARGBHex());
         Assertions.assertTrue(cell3.getCellStyle().getFont().getBold());
 
         XSSFCell cell4 = row.getCell(4);
-        Assertions.assertEquals("{.name}忽略，张三", cell4.getStringCellValue());
+        Assertions.assertEquals("{.name} ignored，Zhang San", cell4.getStringCellValue());
         Assertions.assertEquals(0, cell4.getCellStyle().getDataFormat());
         Assertions.assertEquals("FFFFFF00", cell4.getCellStyle().getFillForegroundColorColor().getARGBHex());
         Assertions.assertEquals("FF808000", cell4.getCellStyle().getFont().getXSSFColor().getARGBHex());
         Assertions.assertTrue(cell4.getCellStyle().getFont().getBold());
 
         XSSFCell cell5 = row.getCell(5);
-        Assertions.assertEquals("空", cell5.getStringCellValue());
+        Assertions.assertEquals("Empty", cell5.getStringCellValue());
         Assertions.assertEquals(0, cell5.getCellStyle().getDataFormat());
         Assertions.assertEquals("FF008080", cell5.getCellStyle().getFillForegroundColorColor().getARGBHex());
         Assertions.assertEquals("FF003366", cell5.getCellStyle().getFont().getXSSFColor().getARGBHex());
@@ -215,7 +215,7 @@ public class FillStyleAnnotatedTest {
 
     private void t12FillStyleHandler03check(HSSFWorkbook workbook, HSSFRow row) {
         HSSFCell cell0 = row.getCell(0);
-        Assertions.assertEquals("张三", cell0.getStringCellValue());
+        Assertions.assertEquals("Zhang San", cell0.getStringCellValue());
         Assertions.assertEquals(49, cell0.getCellStyle().getDataFormat());
         Assertions.assertEquals("FFFF:FFFF:0", cell0.getCellStyle().getFillForegroundColorColor().getHexString());
         Assertions.assertEquals("8080:8080:0", cell0.getCellStyle().getFont(workbook).getHSSFColor(workbook)
@@ -240,7 +240,7 @@ public class FillStyleAnnotatedTest {
         Assertions.assertTrue(cell2.getCellStyle().getFont(workbook).getBold());
 
         HSSFCell cell3 = row.getCell(3);
-        Assertions.assertEquals("张三今年5岁了", cell3.getStringCellValue());
+        Assertions.assertEquals("Zhang San is 5 years old this year", cell3.getStringCellValue());
         Assertions.assertEquals(0, cell3.getCellStyle().getDataFormat());
         Assertions.assertEquals("0:0:FFFF", cell3.getCellStyle().getFillForegroundColorColor().getHexString());
         Assertions.assertEquals("0:0:8080", cell3.getCellStyle().getFont(workbook).getHSSFColor(workbook)
@@ -248,7 +248,7 @@ public class FillStyleAnnotatedTest {
         Assertions.assertTrue(cell3.getCellStyle().getFont(workbook).getBold());
 
         HSSFCell cell4 = row.getCell(4);
-        Assertions.assertEquals("{.name}忽略，张三", cell4.getStringCellValue());
+        Assertions.assertEquals("{.name} ignored，Zhang San", cell4.getStringCellValue());
         Assertions.assertEquals(0, cell4.getCellStyle().getDataFormat());
         Assertions.assertEquals("FFFF:FFFF:0", cell4.getCellStyle().getFillForegroundColorColor().getHexString());
         Assertions.assertEquals("8080:8080:0", cell4.getCellStyle().getFont(workbook).getHSSFColor(workbook)
@@ -256,7 +256,7 @@ public class FillStyleAnnotatedTest {
         Assertions.assertTrue(cell4.getCellStyle().getFont(workbook).getBold());
 
         HSSFCell cell5 = row.getCell(5);
-        Assertions.assertEquals("空", cell5.getStringCellValue());
+        Assertions.assertEquals("Empty", cell5.getStringCellValue());
         Assertions.assertEquals(0, cell5.getCellStyle().getDataFormat());
         Assertions.assertEquals("0:8080:8080", cell5.getCellStyle().getFillForegroundColorColor().getHexString());
         Assertions.assertEquals("0:3333:6666", cell5.getCellStyle().getFont(workbook).getHSSFColor(workbook)
@@ -316,7 +316,7 @@ public class FillStyleAnnotatedTest {
         for (int i = 0; i < 10; i++) {
             FillStyleAnnotatedData fillData = new FillStyleAnnotatedData();
             list.add(fillData);
-            fillData.setName("张三");
+            fillData.setName("Zhang San");
             fillData.setNumber(5.2);
             fillData.setDate(DateUtils.parseDate("2020-01-01 01:01:01"));
             if (i == 5) {

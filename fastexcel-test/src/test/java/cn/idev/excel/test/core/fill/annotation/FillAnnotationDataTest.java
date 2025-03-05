@@ -70,7 +70,7 @@ public class FillAnnotationDataTest {
             Date date = cell10.getDateCellValue();
             Assertions.assertEquals(DateUtils.parseDate("2020-01-01 01:01:01").getTime(), date.getTime());
             String dataFormatString = cell10.getCellStyle().getDataFormatString();
-            Assertions.assertEquals("yyyy年MM月dd日HH时mm分ss秒", dataFormatString);
+            Assertions.assertEquals("yyyy-MM-dd HH:mm:ss", dataFormatString);
             Cell cell11 = row1.getCell(1);
             Assertions.assertEquals(99.99, cell11.getNumericCellValue(), 2);
             boolean hasMerge = false;

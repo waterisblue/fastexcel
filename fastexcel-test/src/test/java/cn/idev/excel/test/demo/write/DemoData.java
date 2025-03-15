@@ -1,16 +1,15 @@
 package cn.idev.excel.test.demo.write;
 
-import java.util.Date;
-
 import cn.idev.excel.annotation.ExcelIgnore;
 import cn.idev.excel.annotation.ExcelProperty;
-
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
+
 /**
- * 基础数据类
+ * Basic data class
  *
  * @author Jiaju Zhuang
  **/
@@ -18,15 +17,26 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode
 public class DemoData {
-    @ExcelProperty("字符串标题")
+    /**
+     * String Title
+     */
+    @ExcelProperty("String Title")
     private String string;
-    @ExcelProperty("日期标题")
+
+    /**
+     * Date Title
+     */
+    @ExcelProperty("Date Title")
     private Date date;
-    @ExcelProperty("数字标题")
+
+    /**
+     * Number Title
+     */
+    @ExcelProperty("Number Title")
     private Double doubleData;
 
     /**
-     * 忽略这个字段
+     * Ignore this field
      */
     @ExcelIgnore
     private String ignore;

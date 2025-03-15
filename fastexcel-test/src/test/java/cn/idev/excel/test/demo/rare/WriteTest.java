@@ -25,7 +25,7 @@ import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import org.junit.jupiter.api.Test;
 
 /**
- * 记录一些不太常见的案例
+ * Record some uncommon cases
  *
  * @author Jiaju Zhuang
  */
@@ -34,62 +34,62 @@ import org.junit.jupiter.api.Test;
 public class WriteTest {
 
     /**
-     * 压缩临时文件
-     * 在导出Excel且格式为xlsx的时候会生成一个临时的xml文件，会比较大，再磁盘不太够的情况下，可以压缩。
-     * 当然压缩式耗费性能的
+     * Compress temporary files
+     * When exporting an Excel file in xlsx format, a temporary XML file will be generated, which can be quite large.
+     * If disk space is limited, you can compress these files.
+     * Note that compression consumes performance.
      */
     @Test
     public void compressedTemporaryFile() {
-        log.info("临时的xml存储在:{}", FileUtils.getPoiFilesPath());
+        log.info("Temporary XML files are stored at: {}", FileUtils.getPoiFilesPath());
         File file = TestFileUtil.createNewFile("rare/compressedTemporaryFile" + System.currentTimeMillis()
             + ".xlsx");
 
-        // 这里 需要指定写用哪个class去写
+        // Specify which class to use for writing here
         try (ExcelWriter excelWriter = EasyExcel.write(file, DemoData.class).registerWriteHandler(
             new WorkbookWriteHandler() {
 
                 /**
-                 * 拦截Workbook创建完成事件
+                 * Intercept the Workbook creation completion event
                  * @param context
                  */
                 @Override
                 public void afterWorkbookCreate(WorkbookWriteHandlerContext context) {
-                    // 获取到Workbook对象
+                    // Get the Workbook object
                     Workbook workbook = context.getWriteWorkbookHolder().getWorkbook();
-                    // 只有SXSSFWorkbook模式才会生成临时文件
+                    // Temporary files are only generated in SXSSFWorkbook mode
                     if (workbook instanceof SXSSFWorkbook) {
                         SXSSFWorkbook sxssfWorkbook = (SXSSFWorkbook)workbook;
-                        // 设置临时文件压缩，当然这个会浪费cpu性能 但是临时文件会变小
+                        // Enable temporary file compression. Note that this will consume CPU performance, but the temporary files will be smaller
                         sxssfWorkbook.setCompressTempFiles(true);
                     }
                 }
             }).build()) {
-            // 这里注意 如果同一个sheet只要创建一次
-            WriteSheet writeSheet = EasyExcel.writerSheet("模板").build();
-            // 10万数据 确保有足够的空间
+            // Note that the same sheet should only be created once
+            WriteSheet writeSheet = EasyExcel.writerSheet("Template").build();
+            // 100,000 data entries to ensure sufficient space
             for (int i = 0; i < 10000; i++) {
-                // 分页去数据库查询数据 这里可以去数据库查询每一页的数据
+                // Query data from the database page by page. Here you can query data for each page from the database
                 List<DemoData> data = data();
                 excelWriter.write(data, writeSheet);
             }
-            log.info("写入完毕，开始准备迁移压缩文件。");
+            log.info("Writing completed, preparing to migrate and compress files.");
         }
     }
 
     /**
-     * 在指定单元格写入数据
+     * Write data to a specified cell
      */
     @Test
     public void specifiedCellWrite() {
         File file = TestFileUtil.createNewFile("rare/specifiedCellWrite" + System.currentTimeMillis()
             + ".xlsx");
 
-        // 需要区分是在 最后一行之前 还是之后
-        // 区分的原因是：excel只能一直向前，而且内存里面只存储100条，而afterRowDispose是在每一行写入完成的时候调用，所以修改一行需要拦截这个事件
-        // 如果是在最后一行之后，由于后面不会再有数据了，所以只要拦截afterWorkbookDispose，在整个excel快写完的时候调用，继续写入数据即可
-
+        // It is necessary to distinguish whether it is before or after the last row
+        // The reason for the distinction is: Excel can only move forward, and only 100 rows are stored in memory. The afterRowDispose event is called after each row is written, so modifying a row requires intercepting this event
+        // If it is after the last row, since there will be no more data afterwards, just intercept the afterWorkbookDispose event and write the data when the Excel file is almost done
         EasyExcel.write(file, DemoData.class)
-            // 写入的值在最后一行之前
+            // Writing value before the last row
             .registerWriteHandler(new RowWriteHandler() {
                 @Override
                 public void afterRowDispose(RowWriteHandlerContext context) {
@@ -98,11 +98,11 @@ public class WriteTest {
                         if (cell == null) {
                             cell = context.getRow().createCell(2);
                         }
-                        cell.setCellValue("测试的第二行数据呀");
+                        cell.setCellValue("Test data for the second row");
                     }
                 }
             })
-            // 写入的值 在最后一一行之后
+            // Writing value after the last row
             .registerWriteHandler(new WorkbookWriteHandler() {
                 @Override
                 public void afterWorkbookDispose(WorkbookWriteHandlerContext context) {
@@ -116,20 +116,20 @@ public class WriteTest {
                     if (cell == null) {
                         cell = row.createCell(2);
                     }
-                    cell.setCellValue("测试地99行数据呀");
+                    cell.setCellValue("Test data for row 99");
                 }
             })
-            .sheet("模板")
+            .sheet("Template")
             .doWrite(data());
 
-        log.info("写入到文件完成:{}", file);
+        log.info("Writing to file completed:{}", file);
     }
 
     private List<DemoData> data() {
         List<DemoData> list = ListUtils.newArrayList();
         for (int i = 0; i < 10; i++) {
             DemoData data = new DemoData();
-            data.setString("字符串" + i);
+            data.setString("String" + i);
             data.setDate(new Date());
             data.setDoubleData(0.56);
             list.add(data);

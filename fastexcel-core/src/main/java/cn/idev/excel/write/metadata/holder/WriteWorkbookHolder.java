@@ -16,10 +16,7 @@ import cn.idev.excel.enums.HolderEnum;
 import cn.idev.excel.exception.ExcelGenerateException;
 import cn.idev.excel.metadata.data.DataFormatData;
 import cn.idev.excel.support.ExcelTypeEnum;
-import cn.idev.excel.util.FileUtils;
-import cn.idev.excel.util.IoUtils;
-import cn.idev.excel.util.MapUtils;
-import cn.idev.excel.util.StyleUtil;
+import cn.idev.excel.util.*;
 import cn.idev.excel.write.handler.context.WorkbookWriteHandlerContext;
 import cn.idev.excel.write.metadata.WriteWorkbook;
 import cn.idev.excel.write.metadata.style.WriteCellStyle;
@@ -297,7 +294,7 @@ public class WriteWorkbookHolder extends AbstractWriteHolder {
             }
             useCache = false;
 
-            if (CellDataTypeEnum.DATE.equals(cellDataType)) {
+            if (CellDataTypeEnum.DATE.equals(cellDataType) && DateUtils.isADateFormat(originCellStyle.getDataFormat(), originCellStyle.getDataFormatString())) {
                 DataFormatData dataFormatData = new DataFormatData();
                 dataFormatData.setIndex(originCellStyle.getDataFormat());
                 dataFormatData.setFormat(originCellStyle.getDataFormatString());

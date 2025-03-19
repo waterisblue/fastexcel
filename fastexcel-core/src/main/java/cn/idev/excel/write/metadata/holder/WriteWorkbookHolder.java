@@ -11,6 +11,7 @@ import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map;
 
+import cn.idev.excel.enums.CellDataTypeEnum;
 import cn.idev.excel.enums.HolderEnum;
 import cn.idev.excel.exception.ExcelGenerateException;
 import cn.idev.excel.metadata.data.DataFormatData;
@@ -279,7 +280,7 @@ public class WriteWorkbookHolder extends AbstractWriteHolder {
      * @param originCellStyle
      * @return
      */
-    public CellStyle createCellStyle(WriteCellStyle writeCellStyle, CellStyle originCellStyle) {
+    public CellStyle createCellStyle(WriteCellStyle writeCellStyle, CellStyle originCellStyle, CellDataTypeEnum cellDataType) {
         if (writeCellStyle == null) {
             return originCellStyle;
         }
@@ -295,6 +296,14 @@ public class WriteWorkbookHolder extends AbstractWriteHolder {
                 originFont = ((HSSFCellStyle)originCellStyle).getFont(workbook);
             }
             useCache = false;
+
+            if (CellDataTypeEnum.DATE.equals(cellDataType)) {
+                DataFormatData dataFormatData = new DataFormatData();
+                dataFormatData.setIndex(originCellStyle.getDataFormat());
+                dataFormatData.setFormat(originCellStyle.getDataFormatString());
+
+                writeCellStyle.setDataFormatData(dataFormatData);
+            }
         }
 
         Map<WriteCellStyle, CellStyle> cellStyleMap = cellStyleIndexMap.computeIfAbsent(styleIndex,

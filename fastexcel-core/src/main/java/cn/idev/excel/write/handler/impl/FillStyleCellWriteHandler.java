@@ -40,7 +40,7 @@ public class FillStyleCellWriteHandler implements CellWriteHandler {
             return;
         }
         WriteWorkbookHolder writeWorkbookHolder = context.getWriteWorkbookHolder();
-        context.getCell().setCellStyle(writeWorkbookHolder.createCellStyle(writeCellStyle, originCellStyle));
+        context.getCell().setCellStyle(writeWorkbookHolder.createCellStyle(writeCellStyle, originCellStyle, cellData.getType()));
     }
 
 }

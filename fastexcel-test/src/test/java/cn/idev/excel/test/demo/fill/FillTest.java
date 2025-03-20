@@ -216,6 +216,29 @@ public class FillTest {
         }
     }
 
+    /**
+     * Example of filling an Excel template with date formatting.
+     * <p>
+     * This method demonstrates how to fill an Excel template where date fields
+     * are already formatted in the template. The written data will automatically
+     * follow the predefined date format in the template.
+     *
+     */
+    @Test
+    public void dateFormatFill() {
+        // Define the path to the template file.
+        // The template should have predefined date formatting.
+        String templateFileName = TestFileUtil.getPath() + "demo" + File.separator + "fill" + File.separator + "dateFormat.xlsx";
+
+        // Generate a new output file name with a timestamp to avoid overwriting.
+        String fileName = TestFileUtil.getPath() + "dateFormatFill" + System.currentTimeMillis() + ".xlsx";
+
+        // Fill the template with data.
+        // The dates in the data will be formatted according to the template's settings.
+        EasyExcel.write(fileName).withTemplate(templateFileName).sheet().doFill(data());
+    }
+
+
     private List<FillData> data() {
         List<FillData> list = ListUtils.newArrayList();
         for (int i = 0; i < 10; i++) {
